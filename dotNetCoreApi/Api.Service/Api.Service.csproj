@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Api.Data\Api.Data.csproj" />
+    <ProjectReference Include="..\Api.Entity\Api.Entity.csproj" />
+    <ProjectReference Include="..\Api.IData\Api.IData.csproj" />
+    <ProjectReference Include="..\Api.IService\Api.IService.csproj" />
+    <ProjectReference Include="..\Api.ViewModels\Api.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
