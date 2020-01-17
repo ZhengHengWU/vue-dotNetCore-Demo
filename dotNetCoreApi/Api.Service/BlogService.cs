@@ -14,7 +14,7 @@ namespace Api.Service
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="testService"></param>
+        /// <param name="blogData"></param>
         public BlogService(IBlogData blogData)
         {
             _blogData = blogData;

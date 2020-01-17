@@ -19,7 +19,7 @@ namespace TestVueApi.Controllers
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="testService"></param>
+        /// <param name="blogService"></param>
         public BlogController(IBlogService blogService)
         {
             _blogService = blogService;
