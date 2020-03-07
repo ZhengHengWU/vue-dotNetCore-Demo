@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Api.Common;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace TestVueApi
 {
@@ -37,8 +34,28 @@ namespace TestVueApi
                .AllowAnyHeader()
                .AllowCredentials()
             ));
+            #region Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v0.1.0",
+                    Title = "Api Swagger",
+                    Description = "Api说明文档",
+                    TermsOfService = "None",
+                    Contact = new Swashbuckle.AspNetCore.Swagger.Contact { Name = "Api.Swagger", Email = "2274367387@qq.com", Url = "https://github.com/ZhengHengWU" }
+                });
+                //如果不加入以下两个xml 也是可以的 但是不会对api有中文说明，使用了一下两个xml 就需要对成员使用///注释
+                //本webapi的xml
+                var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "Api.xml");//这个就是刚刚配置的xml文件名
+                c.IncludeXmlComments(xmlPath, false);//默认的第二个参数是false，这个是controller的注释，记得修改
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+            });
+            #endregion
             //自动配置autofac
             return ConfigureAutofac(services);
+            
         }
         /// <summary>
         /// 自动配置autofac
@@ -81,8 +98,16 @@ namespace TestVueApi
             }
             //配置Cors
             app.UseCors("CorsSample");
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
+
+            #region Swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
+            });
+            #endregion
         }
     }
 }

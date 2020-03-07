@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.852
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Service", "Api.Service\Api.Service.csproj", "{6DD51A2B-310E-491B-938A-846686263324}"
 EndProject
@@ -11,13 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Entity", "Api.Entity\Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.ViewModels", "Api.ViewModels\Api.ViewModels.csproj", "{2A6C47F4-4D2F-4CE6-85C0-84F9771AE9C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Common", "Api.Common\Api.Common.csproj", "{B74E5E3E-418D-40C8-BC85-D03F701B8883}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Common", "Api.Common\Api.Common.csproj", "{B74E5E3E-418D-40C8-BC85-D03F701B8883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.IService", "Api.IService\Api.IService.csproj", "{681400BF-2B40-4213-9CF1-CCFE144FDAB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.IService", "Api.IService\Api.IService.csproj", "{681400BF-2B40-4213-9CF1-CCFE144FDAB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data", "Api.Data\Api.Data.csproj", "{8753DD24-03FA-469D-981D-14DD639E6CC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Data", "Api.Data\Api.Data.csproj", "{8753DD24-03FA-469D-981D-14DD639E6CC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.IData", "Api.IData\Api.IData.csproj", "{7B501EDB-2630-44FD-99AF-B347516F1CF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.IData", "Api.IData\Api.IData.csproj", "{7B501EDB-2630-44FD-99AF-B347516F1CF7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{1B062669-21B2-446D-80D1-F7383A4395A6}"
 EndProject

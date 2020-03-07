@@ -25,13 +25,11 @@
 <script>
   export default {
     created() {
-      console.log(this.$route.params);
       var id = this.$route.params.id;
       if (id != undefined) {
         this.$http.get("GetBlogById?id=" + this.$route.params.id)
           .then(result => {
             var result = result.body;
-            console.log(JSON.stringify(result));
             if (result.state == 1) {
               if (result.data != null) {
                 this.form = result.data;
