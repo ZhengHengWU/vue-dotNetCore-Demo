@@ -52,3 +52,6 @@ obj
 .vscode
 /dotNetCoreApi/.vs
 /vueWeb/node_modules
+*.pubxml
+*.user
+dist

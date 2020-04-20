@@ -1,5 +1,10 @@
 <template>
   <div>
+    <el-header class="header">
+      <!-- 头部组件渲染 -->
+      <Header></Header>
+    </el-header>
+    <br />
     <el-form ref="form" label-width="80px" :model="form">
       <el-form-item label="标题">
         <el-input v-model="form.title"></el-input>
@@ -23,55 +28,58 @@
   </div>
 </template>
 <script>
-  export default {
-    created() {
-      var id = this.$route.params.id;
-      if (id != undefined) {
-        this.$http.get("GetBlogById?id=" + this.$route.params.id)
-          .then(result => {
-            var result = result.body;
-            if (result.state == 1) {
-              if (result.data != null) {
-                this.form = result.data;
-              }
-            }
-          });
-      }
-    },
-    data() {
-      return {
-        form: {
-          id: '',
-          title: '',
-          link: '',
-          author: '',
-          tag: ''
+import Header from "./header.vue";
+import { Toast } from 'vant';
+export default {
+  created() {
+    var id = this.$route.params.id;
+    if (id != undefined) {
+      this.$get("Blog/GetBlogById?id=" + this.$route.params.id).then(result => {
+        if (result.state == 1) {
+          if (result.data != null) {
+            this.form = result.data;
+          }else{
+            this.$message.error('获取失败!');
+          }
         }
-      };
-    },
-    methods: {
-      SaveBlog() {
-        this.$http.post("SaveBlog", this.form)
-          .then(result => {
-            var result = result.body;
-            if (result.state == 1) {
-              this.form = {
-                id: '',
-                title: '',
-                link: '',
-                author: '',
-                tag: ''
-              }
-              this.$router.push({
-                path: '/listBlog'
-              });
-            } else {
-              alert("保存失败!");
-            }
-          })
+      });
+    }
+  },
+  components: {
+    Header
+  },
+  data() {
+    return {
+      form: {
+        id: 0,
+        title: "",
+        link: "",
+        author: "",
+        tag: ""
       }
+    };
+  },
+  methods: {
+    SaveBlog() {
+      this.$post("Blog/SaveBlog", this.form).then(result => {
+        if (result.state == 1) {
+          this.form = {
+            id: "",
+            title: "",
+            link: "",
+            author: "",
+            tag: ""
+          };
+          this.$router.push({
+            path: "/listBlog"
+          });
+        } else {
+          this.$message.error('保存失败!');
+        }
+      });
     }
   }
+};
 </script>
 
 <style>
