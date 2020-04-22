@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
-  entry: './src/main.js',
+  entry: { app: ["babel-polyfill", "./src/main.js"] },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -58,7 +58,13 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        // loader: {
+        //   //babelrc: false,
+        //   presets: [
+        //     ['es2015'],
+        //   ],
+        // },
+        //exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -68,8 +74,8 @@ module.exports = {
         }
       },
       {
-          test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
-          loader: 'file-loader'
+        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+        loader: 'file-loader'
       }
     ]
   },
@@ -105,13 +111,16 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
       compress: {
-        warnings: false
+        warnings: false,
+        drop_console: true
       }
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
   ])
+}
+function resolve(dir) {
+  return path.join(__dirname, '..', dir)
 }
