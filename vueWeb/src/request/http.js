@@ -1,8 +1,6 @@
 import axios from 'axios'; // 引入axios
-import Vuex from 'vuex'
 // vant的toast提示框组件，大家可根据自己的ui组件更改。
 import { Toast } from 'vant';
-import QS from 'qs'; // 引入qs模块，用来序列化post类型的数据，后面会提到
 import store from '../store/index.js'
 /** 
  * 提示函数 
@@ -84,7 +82,6 @@ axios.interceptors.response.use(
     res => res.status === 200 ? Promise.resolve(res) : Promise.reject(res),
     // 请求失败
     error => {
-        debugger;
         const { response } = error;
         if (response) {
             // 请求已发出，但是不在2xx的范围 
