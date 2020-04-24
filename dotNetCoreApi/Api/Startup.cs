@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Api.Common;
+using Api.Filter;
 using Api.Swagger;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -43,6 +44,7 @@ namespace TestVueApi
             services.AddMvc(opt =>
             {
                 opt.Filters.Add(new ProducesAttribute("application/json"));
+                opt.Filters.Add<ErrorFilterAttribute>();
             });
 
             services.Configure<FormOptions>(x =>

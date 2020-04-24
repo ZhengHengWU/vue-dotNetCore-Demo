@@ -32,5 +32,15 @@ namespace Md.Api.Common
 
             return userName == null ? "" : userName;
         }
+        /// <summary>
+        /// 获取当前登录用户的用户编号
+        /// </summary>
+        public static int CurUserID(this ClaimsPrincipal principal)
+        {
+            var auth = principal.Claims;
+            var userId = auth.FirstOrDefault(t => t.Type.Equals("Id"))?.Value;
+
+            return userId == null ? 0 : Convert.ToInt32(userId);
+        }
     }
 }
