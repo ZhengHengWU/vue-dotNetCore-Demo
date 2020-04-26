@@ -21,10 +21,12 @@ namespace Md.Api.Common
         /// </summary>
         /// <param name="data"></param>
         /// <param name="state">1正常  0业务异常   2数据删除   3没有权限</param>
-        public MethodResult(dynamic data, int state = 1)
+        /// <param name="errorCode">错误代码</param>
+        public MethodResult(dynamic data, int state = 1, string errorCode = "")
         {
             State = state;
             Data = data;
+            ErrorCode = errorCode;
         }
 
         /// <summary>
@@ -32,10 +34,11 @@ namespace Md.Api.Common
         /// </summary>
         /// <param name="input"></param>
         /// <param name="state">1正常  0业务异常   2数据删除   3没有权限</param>
-        public MethodResult(string input, int state = 0)
+        /// <param name="errorCode">错误代码</param>
+        public MethodResult(string input, int state = 0, string errorCode = "")
         {
             State = state;
-
+            ErrorCode = errorCode;
             if (state <= 0)
             {
                 ErrorMessage = input;
@@ -61,6 +64,10 @@ namespace Md.Api.Common
         /// </summary>
         public string ErrorMessage { get; set; }
 
+        /// <summary>
+        /// 错误代码
+        /// </summary>
+        public string ErrorCode { get; set; }
 
     }
 }

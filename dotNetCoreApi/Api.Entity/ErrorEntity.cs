@@ -37,6 +37,11 @@ namespace Api.Entity.Logs
         public ErrorFrom ErrorFrom { get; set; } = ErrorFrom.Site;
 
         /// <summary>
+        /// 异常代码
+        /// </summary>
+        public string ErrorCode { get; set; }
+
+        /// <summary>
         ///错误发生时正在处理的数据
         /// </summary>
         public string DealData { get; set; } = "";

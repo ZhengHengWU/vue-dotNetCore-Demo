@@ -4,6 +4,7 @@ WORKDIR /app
 COPY . /app
 WORKDIR /app
 ENV ASPNETCORE_URLS http://+:5002
+ENV ASPNETCORE_ENVIRONMENT=Production
 EXPOSE 5002
  
 CMD  ["dotnet", "Api.dll"]

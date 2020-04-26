@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TestVueApi.Controllers
+namespace Api.Controllers
 {
     /// <summary>
     /// 博客
@@ -116,7 +116,7 @@ namespace TestVueApi.Controllers
                     }
                 }
             }
-            return new MethodResult("Success");
+            return new MethodResult("Success", 1);
         }
     }
 }

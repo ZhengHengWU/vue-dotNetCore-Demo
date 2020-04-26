@@ -24,7 +24,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace TestVueApi
+namespace Api
 {
     public class Startup
     {

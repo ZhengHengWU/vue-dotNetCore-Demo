@@ -37,6 +37,7 @@ namespace Md.Api.Common
         /// </summary>
         public static int CurUserID(this ClaimsPrincipal principal)
         {
+            if (principal == null) return 0;
             var auth = principal.Claims;
             var userId = auth.FirstOrDefault(t => t.Type.Equals("Id"))?.Value;
 
