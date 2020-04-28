@@ -65,7 +65,7 @@ namespace Api.Controllers
         [Authorize]
         public MethodResult SaveBlog(Blog blog)
         {
-            return new MethodResult(_blogService.SaveBlog(blog));
+            return new MethodResult(_blogService.SaveBlog(blog, this.CurUserID()));
         }
         /// <summary>
         /// 删除博客
@@ -76,7 +76,7 @@ namespace Api.Controllers
         [Authorize]
         public MethodResult DeleteBlogById(int? id = null)
         {
-            return new MethodResult(_blogService.DeleteBlogById(id));
+            return new MethodResult(_blogService.DeleteBlogById(id, this.CurUserID()));
         }
         /// <summary>
         /// pdf转化为图片

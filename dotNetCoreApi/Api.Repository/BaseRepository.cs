@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using KeyAttribute = System.ComponentModel.DataAnnotations.KeyAttribute;
+using KeyAttribute = Dapper.KeyAttribute;
 
 namespace Api.Repository
 {

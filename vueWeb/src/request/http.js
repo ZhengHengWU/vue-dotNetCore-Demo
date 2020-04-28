@@ -1,17 +1,16 @@
 import axios from 'axios'; // 引入axios
-// vant的toast提示框组件，大家可根据自己的ui组件更改。
-import { Toast } from 'vant';
+import showToast from '../plugins/ToastMessage';
 import store from '../store/index.js'
+import ElementUI from 'element-ui'
+
+
 /** 
  * 提示函数 
  * 禁止点击蒙层、显示一秒后关闭
  */
 const tip = msg => {
-    Toast({
-        message: msg,
-        duration: 1000,
-        forbidClick: true
-    });
+    //showToast(msg);
+    ElementUI.Message.error(msg);
 }
 
 /** 
@@ -19,12 +18,9 @@ const tip = msg => {
  * 携带当前页面路由，以期在登录页面完成登录后返回当前页面
  */
 const toLogin = () => {
-    router.replace({
-        path: '/login',
-        query: {
-            redirect: router.currentRoute.fullPath
-        }
-    });
+    setTimeout(function () {
+        location.href = "/";
+    }, 1000);
 }
 
 /** 
@@ -36,6 +32,8 @@ const errorHandle = (status, other) => {
     switch (status) {
         // 401: 未登录状态，跳转登录页
         case 401:
+            tip('Token过期，请重新登录');
+            store.commit("setToken", '');
             toLogin();
             break;
         // 403 token过期
@@ -85,14 +83,8 @@ axios.interceptors.response.use(
         const { response } = error;
         if (response) {
             // 请求已发出，但是不在2xx的范围 
-            errorHandle(response.status, response.data.data);
+            errorHandle(response.status, response.data);
             return Promise.reject(response);
-        } else {
-            // 处理断网的情况
-            // eg:请求超时或断网时，更新state的network状态
-            // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
-            // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
-            //Vuex.commit('changeNetwork', false);
         }
         return Promise.reject(error);
     });

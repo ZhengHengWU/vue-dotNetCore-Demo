@@ -8,7 +8,7 @@ namespace Api.IService
     {
         List<Blog> GetAllBlogs(int? id);
         Blog GetBlogById(int? id);
-        int DeleteBlogById(int? id);
-        int SaveBlog(Blog blog);
+        int DeleteBlogById(int? id, int userId);
+        int SaveBlog(Blog blog, int userId);
     }
 }

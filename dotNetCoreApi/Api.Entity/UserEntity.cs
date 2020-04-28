@@ -9,15 +9,15 @@ namespace Api.Entity
         /// <summary>
         /// ID
         /// </summary>
-        public int id { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// 姓名
         /// </summary>
-        public string username { get; set; }
+        public string UserName { get; set; }
         /// <summary>
         /// 密码
         /// </summary>
-        public string password { get; set; }
+        public string PassWord { get; set; }
 
     }
 }

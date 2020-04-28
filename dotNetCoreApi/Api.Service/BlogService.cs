@@ -2,6 +2,8 @@
 using Api.Entity;
 using Api.IData;
 using Api.IService;
+using Api.ViewModels;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,13 +13,15 @@ namespace Api.Service
     public class BlogService : IBlogService
     {
         private readonly IBlogData _blogData;
+        private IMapper _mapper;
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="blogData"></param>
-        public BlogService(IBlogData blogData)
+        public BlogService(IBlogData blogData, IMapper mapper)
         {
             _blogData = blogData;
+            _mapper = mapper;
         }
         public List<Blog> GetAllBlogs(int? id)
         {
@@ -41,11 +45,13 @@ namespace Api.Service
         /// </summary>
         /// <param name="blog"></param>
         /// <returns></returns>
-        public int SaveBlog(Blog blog)
+        public int SaveBlog(Blog blog, int userId)
         {
-            return _blogData.SaveBlog(blog);
+            BlogView model = new BlogView();
+            _mapper.Map(blog, model);
+            return _blogData.SaveBlog(blog, userId);
         }
-        public int DeleteBlogById(int? id)
+        public int DeleteBlogById(int? id, int userId)
         {
             if (id == null)
             {
@@ -53,7 +59,7 @@ namespace Api.Service
             }
             else
             {
-                return _blogData.DeleteBlogById(id ?? 0);
+                return _blogData.DeleteBlogById(id ?? 0, userId);
             }
         }
     }

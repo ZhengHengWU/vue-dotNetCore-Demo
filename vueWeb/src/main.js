@@ -15,8 +15,8 @@ Vue.use(ElementUI)
 // 安装 路由（url）
 Vue.use(VueRouter)
 
-import toastMessage from './plugins/ToastMessage' // message 提示消息插件
-Vue.use(toastMessage)
+import { registryToast } from './plugins/ToastMessage' // message 提示消息插件
+Vue.use(registryToast)
 // 绑定 vue-resource（ajax）
 //Vue.use(VueResource)
 

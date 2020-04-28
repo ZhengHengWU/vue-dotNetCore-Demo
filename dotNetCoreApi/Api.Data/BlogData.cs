@@ -19,22 +19,22 @@ namespace Api.Data
 
             return DbData.GetList<Blog>(sql, new { id })?.ToList();
         }
-        public int SaveBlog(Blog blog)
+        public int SaveBlog(Blog blog,int userId)
         {
-            if (blog.id > 0)
+            if (blog.Id > 0)
             {
-                DbData.Update<Blog>(blog, 204);
-                return blog.id;
+                DbData.Update<Blog>(blog, userId);
+                return blog.Id;
             }
-            return DbData.Insert<Blog>(blog, 204);
+            return DbData.Insert<Blog>(blog, userId);
         }
         public Blog GetBlogById(int id)
         {
             return DbData.GetByID<Blog>(id);
         }
-        public int DeleteBlogById(int id)
+        public int DeleteBlogById(int id, int userId)
         {
-            return DbData.Delete<Blog>(new Blog { id = id }, 204) == true ? id : 0;
+            return DbData.Delete<Blog>(new Blog { Id = id }, userId) == true ? id : 0;
         }
     }
 }

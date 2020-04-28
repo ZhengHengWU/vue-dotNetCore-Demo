@@ -1,12 +1,9 @@
-﻿using Dapper;
-using System;
+﻿using System;
 
-namespace Api.Entity
+namespace Api.ViewModels
 {
-    [Table("Blog")]
-    public class Blog: BaseEntity
+    public class BlogView
     {
-        [Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Link { get; set; }

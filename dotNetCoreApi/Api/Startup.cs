@@ -9,6 +9,7 @@ using Api.Filter;
 using Api.Swagger;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -58,11 +59,11 @@ namespace Api
             services.AddMvc().AddWebApiConventions();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMvcCore().AddApiExplorer();
-
+            services.AddAutoMapper(Assembly.Load("Api.Service"));
             //services.AddMvc().AddJsonOptions(options =>
             //{
-            //    处理返回结构属性首字母不被小写
-            //     对 JSON 数据使用混合大小写。跟属性名同样的大小.输出
+            //    //处理返回结构属性首字母不被小写
+            //    //对 JSON 数据使用混合大小写。跟属性名同样的大小.输出
             //    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             //});
             services.AddCors(options => options.AddPolicy("CorsSample", p =>

@@ -28,9 +28,9 @@ namespace Api.Service
             {
                     new Claim(JwtRegisteredClaimNames.Nbf,$"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}") ,
                     new Claim (JwtRegisteredClaimNames.Exp,$"{new DateTimeOffset(DateTime.Now.AddMinutes(30)).ToUnixTimeSeconds()}"),
-                    new Claim(ClaimTypes.NameIdentifier, user.username.ToString()),
-                    new Claim("Id", user.id.ToString()),
-                    new Claim("Name", user.username.ToString())
+                    new Claim(ClaimTypes.NameIdentifier, user.UserName.ToString()),
+                    new Claim("Id", user.Id.ToString()),
+                    new Claim("Name", user.UserName.ToString())
                 };
             //sign the token using a secret key.This secret will be shared between your API and anything that needs to check that the token is legit.
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSetting.SecurityKey));

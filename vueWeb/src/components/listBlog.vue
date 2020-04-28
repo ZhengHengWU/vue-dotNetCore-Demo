@@ -71,7 +71,6 @@
 
 <script>
 import Header from "./header.vue";
-import { get } from "../request/http";
 export default {
   created() {
     this.listAllBlog();
