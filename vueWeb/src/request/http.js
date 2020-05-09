@@ -2,7 +2,7 @@ import axios from 'axios'; // 引入axios
 import showToast from '../plugins/ToastMessage';
 import store from '../store/index.js'
 import ElementUI from 'element-ui'
-
+import api from '../request/api.js'
 
 /** 
  * 提示函数 
@@ -54,8 +54,8 @@ const errorHandle = (status, other) => {
     }
 }
 
+//axios.defaults.baseURL = 'http://182.61.137.111:5001/api/';
 axios.defaults.baseURL = 'https://localhost:5001/api/';
-
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -64,7 +64,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 //vuex的路径根据自己的路径去写
 axios.interceptors.request.use(
     config => {
-        config.url = config.baseURL + config.url;
+        config.url = api + config.url;
         const token = store.state.token;
         token && (config.headers.Authorization = "Bearer " + token);
         return config;

@@ -1,0 +1,13 @@
+﻿version: '2'
+services:
+    dotnetapi:
+        container_name: dotnetapicontains
+        build: .
+
+    reverse-proxy:
+        container_name: reverse-proxy
+        image: nginx
+        ports:
+         - "5002:5002"
+        volumes:
+         - ./proxy.conf:/etc/nginx/conf.d/default.conf

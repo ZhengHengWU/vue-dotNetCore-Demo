@@ -1,0 +1,5 @@
+{
+  "pfx_name": "server.pfx",
+  "pfx_pswd": "wuzhd",
+  "server_port": 443
+}

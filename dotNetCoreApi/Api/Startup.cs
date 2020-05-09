@@ -175,7 +175,7 @@ namespace Api
             });
             //配置Cors
             app.UseCors("CorsSample");
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseMvc();
 
             #region Swagger
