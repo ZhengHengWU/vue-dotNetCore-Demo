@@ -1,12 +1,32 @@
-﻿version: '2'
+version: '3'
 services:
+    mysql.db:
+     container_name: mysql.db
+     image: mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: 123456
+     ports:
+      - 3306:3306
+     volumes:
+      - /home/mysql/:/var/lib/mysql
+     command:
+      --lower_case_table_names=1
+      #--initialize-insecure
+     
+     
     dotnetapi:
         container_name: dotnetapicontains
         build: .
-
+        depends_on:
+          -  mysql.db
+        links:
+          -  mysql.db
     reverse-proxy:
         container_name: reverse-proxy
         image: nginx
+        depends_on:
+        - dotnetapi
         ports:
          - "5002:5002"
         volumes:

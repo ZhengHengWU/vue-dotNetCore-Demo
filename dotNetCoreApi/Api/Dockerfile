@@ -6,6 +6,9 @@ WORKDIR /app
 ENV ASPNETCORE_URLS http://+:5002
 ENV ASPNETCORE_ENVIRONMENT=Production
 EXPOSE 5002
+#Ê±ÇøÉèÖÃ
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
+RUN echo 'Asia/Shanghai' >/etc/timezone
 #ENV certPassword 123456
 #RUN openssl genrsa -des3 -passout pass:${certPassword} -out server.key 2048
 #RUN openssl rsa -passin pass:${certPassword} -in server.key -out server.key
