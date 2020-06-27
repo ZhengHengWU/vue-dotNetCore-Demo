@@ -15,12 +15,11 @@ namespace Api.Service
 {
     public class TokenService : ITokenService
     {
-        private readonly JwtSetting _jwtSetting;
-        public TokenService(IOptions<JwtSetting> option)
+        private readonly IOptionsSnapshot<JwtSetting> _jwtSetting;
+        public TokenService(IOptionsSnapshot<JwtSetting> option)
         {
-            _jwtSetting = option.Value;
+            _jwtSetting = option;
         }
-
         public string GetToken(UserEntity user)
         {
             //创建用户身份标识,这里可以随意加入自定义的参数，key可以自己随便起
@@ -33,14 +32,14 @@ namespace Api.Service
                     new Claim("Name", user.UserName.ToString())
                 };
             //sign the token using a secret key.This secret will be shared between your API and anything that needs to check that the token is legit.
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSetting.SecurityKey));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSetting.Value.SecurityKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             //.NET Core’s JwtSecurityToken class takes on the heavy lifting and actually creates the token.
             var token = new JwtSecurityToken(
                 //颁发者
-                issuer: _jwtSetting.Issuer,
+                issuer: _jwtSetting.Value.Issuer,
                 //接收者
-                audience: _jwtSetting.Audience,
+                audience: _jwtSetting.Value.Audience,
                 //过期时间
                 expires: DateTime.Now.AddMinutes(30),
                 //签名证书
