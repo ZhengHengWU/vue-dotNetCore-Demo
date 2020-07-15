@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Api.Common;
 using Api.Filter;
+using Api.IService;
+using Api.Service;
 using Api.Swagger;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -19,6 +21,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
@@ -53,8 +56,18 @@ namespace Api
                 x.ValueLengthLimit = int.MaxValue;
                 x.MultipartBodyLengthLimit = int.MaxValue; // In case of multipart
             });
-
+            var systemPath = new SystemPath();
+            Configuration.Bind("SystemPath", systemPath);
+            GlobalConfig.systemPath = systemPath;
+            ChangeToken.OnChange(() => Configuration.GetReloadToken(), () =>
+            {
+                var config = new SystemPath();
+                Configuration.Bind("SystemPath", config);
+                GlobalConfig.systemPath = config;
+            });
             services.Configure<JwtSetting>(Configuration.GetSection("JwtSetting"));
+            services.Configure<SystemPath>(Configuration.GetSection("SystemPath"));
+            //services.AddScoped<IPathService, PathService>();
             //HttpResponseMessage结构
             services.AddMvc().AddWebApiConventions();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
