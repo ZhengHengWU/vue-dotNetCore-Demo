@@ -39,7 +39,7 @@ namespace Api.Repository
                     }
                     sequenceInfo.LastModifyDate = DateTime.Now;
                     sequenceInfo.LastModifyUserID = userId;
-                    string update = $"update Sequence set DateNumber='{currentDate}',Number={sequenceInfo.Number},LastModifyUserID={userId},LastModifyDate='{DateTime.Now}'";
+                    string update = $"update Sequence set DateNumber='{currentDate}',Number={sequenceInfo.Number},LastModifyUserID={userId},LastModifyDate='{DateTime.Now}' where Id={sequenceInfo?.ID}";
                     conn.Execute(update);
                 }
                 else

@@ -55,3 +55,4 @@ obj
 *.pubxml
 *.user
 dist
+/dotNetCoreApi/.idea/.idea.dotNetCoreApi

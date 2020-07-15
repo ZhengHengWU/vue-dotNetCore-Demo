@@ -2,30 +2,30 @@
 using Api.Entity;
 using Api.IData;
 using Api.IService;
+using Api.Service.Automapper;
 using Api.ViewModels;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Api.Service
 {
     public class BlogService : IBlogService
     {
         private readonly IBlogData _blogData;
-        private IMapper _mapper;
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="blogData"></param>
-        public BlogService(IBlogData blogData, IMapper mapper)
+        public BlogService(IBlogData blogData)
         {
             _blogData = blogData;
-            _mapper = mapper;
         }
-        public List<Blog> GetAllBlogs(int? id)
+        public async Task<List<Blog>> GetAllBlogs(int? id)
         {
-            return _blogData.GetAllBlogs(id);
+            return await _blogData.GetAllBlogs(id);
         }
 
         public Blog GetBlogById(int? id)
@@ -48,7 +48,7 @@ namespace Api.Service
         public int SaveBlog(Blog blog, int userId)
         {
             BlogView model = new BlogView();
-            _mapper.Map(blog, model);
+            model = AutoMapperHelper.MapTo<Blog, BlogView>(blog);
             return _blogData.SaveBlog(blog, userId);
         }
         public int DeleteBlogById(int? id, int userId)

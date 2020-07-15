@@ -9,6 +9,7 @@ using Api.Entity;
 using Api.IService;
 using Md.Api.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace Api.Controllers

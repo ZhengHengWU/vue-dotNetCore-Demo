@@ -5,11 +5,12 @@ services:
      image: mysql
      restart: always
      environment:
-       MYSQL_ROOT_PASSWORD: 123456
+       MYSQL_ROOT_PASSWORD: wuzhd123456!
      ports:
       - 3306:3306
      volumes:
       - /home/mysql/:/var/lib/mysql
+      - /home/cnf/my.cnf:/etc/mysql/my.cnf
      command:
       --lower_case_table_names=1
       #--initialize-insecure

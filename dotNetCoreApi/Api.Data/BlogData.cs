@@ -4,12 +4,13 @@ using Api.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Api.Data
 {
     public class BlogData : IBlogData
     {
-        public List<Blog> GetAllBlogs(int? id)
+        public async Task<List<Blog>> GetAllBlogs(int? id)
         {
             string sql = "select * from blog where EntityState<2 ";
             if (id != null)
@@ -19,7 +20,7 @@ namespace Api.Data
 
             return DbData.GetList<Blog>(sql, new { id })?.ToList();
         }
-        public int SaveBlog(Blog blog,int userId)
+        public int SaveBlog(Blog blog, int userId)
         {
             if (blog.Id > 0)
             {

@@ -38,10 +38,10 @@ namespace Api.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize]
-        public MethodResult GetAllBlogs(int? id = null)
+        public async Task<MethodResult> GetAllBlogs(int? id = null)
         {
             var userId = this.CurUserID();
-            return new MethodResult(_blogService.GetAllBlogs(id));
+            return new MethodResult(await _blogService.GetAllBlogs(id));
         }
         /// <summary>
         /// 通过ID获取博客
