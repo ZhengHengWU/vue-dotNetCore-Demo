@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.IData", "Api.IData\Api.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{1B062669-21B2-446D-80D1-F7383A4395A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Enum", "Api.Enum\Api.Enum.csproj", "{7A6AAD6C-2C8C-4FE0-B3E9-8C1E24569598}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{1B062669-21B2-446D-80D1-F7383A4395A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B062669-21B2-446D-80D1-F7383A4395A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B062669-21B2-446D-80D1-F7383A4395A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A6AAD6C-2C8C-4FE0-B3E9-8C1E24569598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A6AAD6C-2C8C-4FE0-B3E9-8C1E24569598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A6AAD6C-2C8C-4FE0-B3E9-8C1E24569598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A6AAD6C-2C8C-4FE0-B3E9-8C1E24569598}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
