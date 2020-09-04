@@ -5,10 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
+using System.Threading;
 
-namespace Api.Service
+namespace Api.Data
 {
-   static class DbData
+   public static class DbData
     {
         /// <summary>
         /// 开启事务
