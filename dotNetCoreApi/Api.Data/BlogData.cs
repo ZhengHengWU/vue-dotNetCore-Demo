@@ -1,4 +1,5 @@
-﻿using Api.Entity;
+﻿using Api.Common;
+using Api.Entity;
 using Api.IData;
 using Api.Service;
 using System;
@@ -12,13 +13,21 @@ namespace Api.Data
     {
         public async Task<List<Blog>> GetAllBlogs(int? id)
         {
-            string sql = "select * from blog where EntityState<2 ";
-            if (id != null)
+            try
             {
-                sql += " and Id=@id";
+                string sql = "select * from blog where EntityState<2 ";
+                if (id != null)
+                {
+                    sql += " and Id=@id";
+                }
+
+                return DbData.GetList<Blog>(sql, new { id })?.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ExceptionClass.Throw(ex);
             }
 
-            return DbData.GetList<Blog>(sql, new { id })?.ToList();
         }
         public int SaveBlog(Blog blog, int userId)
         {
