@@ -10,7 +10,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-preset-stage-2": "^6.24.1",
     "element-ui": "^2.13.0",
     "less": "^3.11.1",
