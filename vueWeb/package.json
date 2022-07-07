@@ -14,7 +14,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "element-ui": "^2.13.0",
     "less": "^3.11.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "promise": "^8.1.0",
     "vant": "^2.5.7",
     "vue": "^2.5.11",
